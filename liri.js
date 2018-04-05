@@ -9,14 +9,14 @@ var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 var command = process.argv[2];
 var arg = null;
-if(process.argv.length > 3) arg = process.argv[3];
+if (process.argv.length > 3) arg = process.argv[3];
 
 if (command === "do-what-it-says") {
     var data = fs.readFileSync("random.txt", "utf8");
-        var arr = data.split(",");
-        command = arr[0];
-        arg = arr[1];
-        console.log(command);
+    var arr = data.split(",");
+    command = arr[0];
+    arg = arr[1];
+    console.log(command);
 }
 
 if (command === "my-tweets") {
@@ -24,7 +24,10 @@ if (command === "my-tweets") {
         if (error) throw error;
         for (var i = 0; i < tweets.length; i++) {
             var tweet = tweets[i];
-            console.log(`${tweet.text} ${tweet.created_at}`)
+            console.log(
+                `
+Tweet: ${tweet.text}
+Tweeted at: ${tweet.created_at}`);
         }
     });
 }
@@ -35,7 +38,11 @@ if (command === "spotify-this-song") {
     else song = arg;
     spotify.search({ type: "track", query: song, limit: "1" }, function (error, data) {
         if (error) throw error;
-        console.log(`${data.tracks.items[0].name} ${data.tracks.items[0].artists[0].name} ${data.tracks.items[0].album.name} ${data.tracks.items[0].preview_url}`);
+        console.log(`
+Track Name: ${data.tracks.items[0].name}
+Artist: ${data.tracks.items[0].artists[0].name}
+Album: ${data.tracks.items[0].album.name}
+Preview Link: ${data.tracks.items[0].preview_url}`);
     });
 }
 
@@ -46,14 +53,15 @@ if (command === "movie-this") {
     request(`http://www.omdbapi.com/?t=${movie}&apikey=trilogy`, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             var info = JSON.parse(body);
-            console.log(info.Title);
-            console.log(info.Year);
-            console.log(info.imdbRating);
-            console.log(info.Ratings[1].Value);
-            console.log(info.Country);
-            console.log(info.Language);
-            console.log(info.Plot);
-            console.log(info.Actors);
+            console.log(`
+Title: ${info.Title}
+Year: ${info.Year}
+IMDB Rating: ${info.imdbRating}
+Rotten Tomatoes Rating: ${info.Ratings[1].Value}
+Country: ${info.Country}
+Language: ${info.Language}
+Plot: ${info.Plot}
+Actors: ${info.Actors}`);
         }
     });
 }
