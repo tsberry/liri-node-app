@@ -36,13 +36,16 @@ if (command === "spotify-this-song") {
     var song;
     if (arg === null) song = "The Sign Ace of Base";
     else song = arg;
-    spotify.search({ type: "track", query: song, limit: "1" }, function (error, data) {
+    spotify.search({ type: "track", query: song, limit: "10" }, function (error, data) {
         if (error) throw error;
-        console.log(`
-Track Name: ${data.tracks.items[0].name}
-Artist: ${data.tracks.items[0].artists[0].name}
-Album: ${data.tracks.items[0].album.name}
-Preview Link: ${data.tracks.items[0].preview_url}`);
+        for (var i = 0; i < data.tracks.items.length; i++) {
+            console.log(`
+Result ${i+1}
+Track Name: ${data.tracks.items[i].name}
+Artist: ${data.tracks.items[i].artists[0].name}
+Album: ${data.tracks.items[i].album.name}
+Preview Link: ${data.tracks.items[i].preview_url}`);
+        }
     });
 }
 
