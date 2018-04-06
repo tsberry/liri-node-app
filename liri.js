@@ -9,13 +9,13 @@ var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 var command = process.argv[2];
 var arg = null;
-if (process.argv.length > 3) arg = process.argv[3];
+if (process.argv.length > 3) arg = process.argv.splice(3, process.argv.length - 3).join(" ");
 
 if (command === "do-what-it-says") {
     var data = fs.readFileSync("random.txt", "utf8");
     var arr = data.split(",");
     command = arr[0];
-    arg = arr[1];
+    arg = arr.splice(1, arr.length - 1).join(" ");
     console.log(command);
 }
 
