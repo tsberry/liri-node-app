@@ -42,7 +42,7 @@ If you run the application by typing `node liri.js spotify-this-song`, you will 
 
 ![alt-text](images/spotify1.png "View without inputting a song")
 
-Alternatively, you cant type `node liri.js spotify-this-song` followed by the name of a song to get results for that song, as shown below.
+Alternatively, you can type `node liri.js spotify-this-song` followed by the name of a song to get results for that song, as shown below.
 
 ![alt-text](images/spotify2.png "View when searching for a song")
 
@@ -52,6 +52,6 @@ If you run the application by typing `node liri.js movie-this`, you will see mov
 
 ![alt-text](images/movie1.png "View without inputting a movie")
 
-Alternatively, you cant type `node liri.js movie-this` followed by the name of a movie to get data for that movie, as shown below.
+Alternatively, you can type `node liri.js movie-this` followed by the name of a movie to get data for that movie, as shown below.
 
 ![alt-text](images/movie2.png "View when searching for a movie")
